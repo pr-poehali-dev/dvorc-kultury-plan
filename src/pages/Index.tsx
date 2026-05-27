@@ -7,6 +7,8 @@ import { EVENTS, CATEGORIES, Event } from '@/data/events';
 const MONTH_DAYS = Array.from({ length: 31 }, (_, i) => i + 1);
 const FIRST_DAY_OFFSET = 0; // December 2025 starts on Monday
 
+const QR_URL = 'https://cdn.poehali.dev/projects/008ed626-2f28-4950-91f3-178c028ee020/bucket/417a4d68-4790-44d8-911f-1e2beb43f205.jpg';
+
 type ViewMode = 'table' | 'calendar';
 
 const Index = () => {
@@ -15,6 +17,7 @@ const Index = () => {
   const [filterDate, setFilterDate] = useState<number | null>(null);
   const [search, setSearch] = useState('');
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [qrOpen, setQrOpen] = useState(false);
 
   const filtered = useMemo(() => {
     return EVENTS.filter(e => {
@@ -150,10 +153,11 @@ const Index = () => {
             </Button>
             <div className="ml-2 shrink-0">
               <img
-                src="https://cdn.poehali.dev/projects/008ed626-2f28-4950-91f3-178c028ee020/bucket/417a4d68-4790-44d8-911f-1e2beb43f205.jpg"
+                src={QR_URL}
                 alt="QR-код Дворца культуры"
-                className="w-9 h-9 rounded object-cover border border-border"
-                title="QR-код"
+                className="w-14 h-14 rounded object-cover border border-border cursor-pointer hover:opacity-80 transition-opacity"
+                title="Нажмите для увеличения"
+                onClick={() => setQrOpen(true)}
               />
             </div>
           </div>
@@ -404,6 +408,29 @@ const Index = () => {
       </footer>
 
       <RegisterModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
+
+      {/* QR lightbox */}
+      {qrOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 animate-fade-in"
+          onClick={() => setQrOpen(false)}
+        >
+          <div className="relative" onClick={e => e.stopPropagation()}>
+            <img
+              src={QR_URL}
+              alt="QR-код Дворца культуры"
+              className="w-72 h-72 sm:w-96 sm:h-96 rounded-lg shadow-2xl object-contain bg-white p-2"
+            />
+            <button
+              onClick={() => setQrOpen(false)}
+              className="absolute -top-3 -right-3 bg-white rounded-full w-7 h-7 flex items-center justify-center shadow-md hover:bg-secondary transition-colors"
+            >
+              <Icon name="X" size={14} />
+            </button>
+            <p className="text-center text-white/70 text-xs font-sans mt-2">Нажмите вне изображения, чтобы закрыть</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
