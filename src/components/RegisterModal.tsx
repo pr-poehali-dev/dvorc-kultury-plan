@@ -34,7 +34,7 @@ export default function RegisterModal({ event, onClose }: Props) {
     <Dialog open={!!event} onOpenChange={reset}>
       <DialogContent className="max-w-lg border-0 shadow-2xl p-0 overflow-hidden">
         {/* Header */}
-        <div className="bg-navy px-6 py-5">
+        <div className="px-6 py-5" style={{ backgroundColor: 'hsl(355 70% 22%)' }}>
           <div className="flex items-start gap-3">
             <div className="mt-0.5">
               <span className={`inline-block text-xs px-2 py-0.5 rounded border ${cat.color} font-sans`}>
@@ -48,17 +48,17 @@ export default function RegisterModal({ event, onClose }: Props) {
             </DialogTitle>
           </DialogHeader>
           <div className="flex flex-wrap gap-4 mt-4 text-sm">
-            <span className="flex items-center gap-1.5 text-yellow-200">
+            <span className="flex items-center gap-1.5 text-white/80">
               <Icon name="Calendar" size={14} />
               {event.date} декабря 2025, {event.dayName}
             </span>
             {event.time && (
-              <span className="flex items-center gap-1.5 text-yellow-200">
+              <span className="flex items-center gap-1.5 text-white/80">
                 <Icon name="Clock" size={14} />
                 {event.time}
               </span>
             )}
-            <span className="flex items-center gap-1.5 text-blue-200">
+            <span className="flex items-center gap-1.5 text-white/60">
               <Icon name="MapPin" size={14} />
               {event.venue}
             </span>
@@ -79,7 +79,7 @@ export default function RegisterModal({ event, onClose }: Props) {
                 Заполните форму — администраторы свяжутся с вами для подтверждения.
               </p>
               <div className="space-y-1.5">
-                <Label className="font-sans text-sm font-medium text-navy">Ваше имя *</Label>
+                <Label className="font-sans text-sm font-medium text-crimson">Ваше имя *</Label>
                 <Input
                   required
                   value={name}
@@ -89,7 +89,7 @@ export default function RegisterModal({ event, onClose }: Props) {
                 />
               </div>
               <div className="space-y-1.5">
-                <Label className="font-sans text-sm font-medium text-navy">Телефон *</Label>
+                <Label className="font-sans text-sm font-medium text-crimson">Телефон *</Label>
                 <Input
                   required
                   value={phone}
@@ -100,7 +100,7 @@ export default function RegisterModal({ event, onClose }: Props) {
                 />
               </div>
               <div className="space-y-1.5">
-                <Label className="font-sans text-sm font-medium text-navy">Количество человек</Label>
+                <Label className="font-sans text-sm font-medium text-crimson">Количество человек</Label>
                 <Input
                   value={people}
                   onChange={e => setPeople(e.target.value)}
@@ -113,7 +113,8 @@ export default function RegisterModal({ event, onClose }: Props) {
               <div className="flex gap-3 pt-2">
                 <Button
                   type="submit"
-                  className="bg-navy hover:bg-navy/90 text-white font-sans px-6"
+                  className="text-white font-sans px-6 hover:opacity-90"
+                  style={{ backgroundColor: 'hsl(355 68% 35%)' }}
                 >
                   <Icon name="Send" size={15} />
                   Записаться
