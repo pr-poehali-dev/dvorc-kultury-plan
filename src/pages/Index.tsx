@@ -148,6 +148,14 @@ const Index = () => {
               <Icon name="CalendarDays" size={15} />
               Календарь
             </Button>
+            <div className="ml-2 shrink-0">
+              <img
+                src="https://cdn.poehali.dev/projects/008ed626-2f28-4950-91f3-178c028ee020/bucket/417a4d68-4790-44d8-911f-1e2beb43f205.jpg"
+                alt="QR-код Дворца культуры"
+                className="w-9 h-9 rounded object-cover border border-border"
+                title="QR-код"
+              />
+            </div>
           </div>
         </div>
       </div>
