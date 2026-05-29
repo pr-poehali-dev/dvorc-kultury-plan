@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import RegisterModal from '@/components/RegisterModal';
@@ -12,6 +13,7 @@ const QR_URL = 'https://cdn.poehali.dev/projects/008ed626-2f28-4950-91f3-178c028
 type ViewMode = 'table' | 'calendar';
 
 const Index = () => {
+  const navigate = useNavigate();
   const [view, setView] = useState<ViewMode>('table');
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const [filterDate, setFilterDate] = useState<number | null>(null);
@@ -64,7 +66,14 @@ const Index = () => {
         {/* Top thin accent line */}
         <div className="h-1 w-full bg-white/20" />
 
-        <div className="relative max-w-6xl mx-auto px-4 pt-6 pb-8">
+        <div className="relative max-w-6xl mx-auto px-4 pt-4 pb-8">
+          <button
+            onClick={() => navigate('/')}
+            className="flex items-center gap-1.5 text-white/60 hover:text-white text-xs mb-4 transition-colors"
+          >
+            <Icon name="ArrowLeft" size={13} />
+            На главную
+          </button>
           <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
 
             {/* Logo */}
